@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Link, Routes, Route } from 'react-router-dom'
 import './App.css';
+import routesConfig from './routesConfig';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    return (
+      <div>
+        <div className="App">
+          <Link to="/" >Home</Link>
+          <Link to="/user" >User</Link>
+        </div>
+        <Routes>
+          {routesConfig.map((value, key) => {
+            return <Route
+              key={key}
+              path={value.path}
+              element={value.element}              
+              exact={value.exact}
+            ></Route>
+          })}
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;
+
